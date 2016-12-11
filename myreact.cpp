@@ -1,5 +1,8 @@
 #include "myreact.h"
+#include "bullet.h"
 #include <QDebug>
+#include <QKeyEvent>
+#include <QGraphicsScene>
 
 void MyReact::keyPressEvent(QKeyEvent *event)
 {
@@ -18,6 +21,12 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Down)
     {
         setPos(x(), y() + 10);
+    }
+    else if (event->key() == Qt::Key_Space)
+    {
+        Bullet* bullet = new Bullet();
+        bullet->setPos(x(), y());
+        scene()->addItem(bullet);
     }
     else
     {
