@@ -1,19 +1,21 @@
 #include <QApplication>
 #include <QGraphicsScene>
-#include <QGraphicsRectItem>
 #include <QGraphicsView>
+#include "myreact.h"
 
-#include <memory>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    std::shared_ptr<QGraphicsScene> scene = std::make_shared<QGraphicsScene>();
-    auto rectItem = std::make_shared<QGraphicsRectItem>();
+    QGraphicsScene* scene = new QGraphicsScene();
+    MyReact* rectItem = new MyReact();
     rectItem->setRect(0, 0, 40, 50);
-    scene->addItem(rectItem.get());
+    scene->addItem(rectItem);
 
-    std::shared_ptr<QGraphicsView> view = std::make_shared<QGraphicsView>(scene.get());
+    rectItem->setFlag(QGraphicsItem::ItemIsFocusable);
+    rectItem->setFocus();
+
+    QGraphicsView* view = new QGraphicsView(scene);
     view->show();
     return a.exec();
 }
