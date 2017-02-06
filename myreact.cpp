@@ -32,7 +32,21 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     }
 }
 
+MyReact::MyReact(int width, int height)
+{
+    setRect(0, 0, width, height);
+    setProperties();
+}
+
 MyReact::MyReact()
 {
+    rectItem->setRect(0, 0, 40, 50);
+    setProperties();
+}
 
+MyReact::setProperties()
+{
+    scene->addItem(this);
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
 }
