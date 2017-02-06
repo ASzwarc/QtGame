@@ -40,13 +40,12 @@ MyReact::MyReact(int width, int height)
 
 MyReact::MyReact()
 {
-    rectItem->setRect(0, 0, 40, 50);
+    setRect(0, 0, 40, 50);
     setProperties();
 }
 
-MyReact::setProperties()
+void MyReact::setProperties()
 {
-    scene->addItem(this);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
 }

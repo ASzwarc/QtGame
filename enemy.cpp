@@ -1,6 +1,8 @@
 #include "enemy.h"
 #include <cstdlib>
 #include <QDebug>
+#include <QTimer>
+#include <QGraphicsScene>
 
 Enemy::Enemy(QObject *parent) : QObject(parent)
 {
@@ -14,7 +16,7 @@ Enemy::Enemy(QObject *parent) : QObject(parent)
 void Enemy::move()
 {
     setPos(x(), y() + 5);
-    if (pos.y() + rect().height() > 600)
+    if (pos().y() + rect().height() > 600)
     {
         scene()->removeItem(this);
         delete this;

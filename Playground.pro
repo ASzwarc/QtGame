@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     myreact.cpp \
     bullet.cpp \
-    enemy.cpp
+    enemy.cpp \
+    game.cpp
 
 HEADERS  += \
     myreact.h \
     bullet.h \
-    enemy.h
+    enemy.h \
+    game.h
 
 FORMS    +=

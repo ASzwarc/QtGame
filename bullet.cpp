@@ -2,6 +2,7 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
+
 Bullet::Bullet()
 {
     setRect(0, 0, 10, 50);
