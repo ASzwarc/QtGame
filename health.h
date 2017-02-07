@@ -7,8 +7,8 @@
 class Health: public QGraphicsTextItem
 {
 public:
-    Health(QGraphicsItem* parent);
-    void increment();
+    Health(QGraphicsItem* parent = nullptr);
+    void decrement();
     void print();
     int get();
 private:

@@ -22,7 +22,7 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Space)
     {
-        Bullet* bullet = new Bullet();
+        Bullet* bullet = new Bullet(score_);
         bullet->setPos(x(), y());
         scene()->addItem(bullet);
     }
@@ -32,7 +32,8 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     }
 }
 
-MyReact::MyReact(int width, int height)
+MyReact::MyReact(int width, int height, Score *score):
+    score_(score)
 {
     setRect(0, 0, width, height);
     setProperties();

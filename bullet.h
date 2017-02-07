@@ -4,15 +4,19 @@
 #include <QGraphicsRectItem>
 #include <QObject>
 
+#include "score.h"
+
 class Bullet: public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
 
 public:
-    Bullet();
+    Bullet(Score* score);
 
 public slots:
     void move();
+private:
+    Score* score_;
 };
 
 #endif // BULLET_H

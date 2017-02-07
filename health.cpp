@@ -1,15 +1,22 @@
 #include "health.h"
+#include <QFont>
 
 Health::Health(QGraphicsItem *parent):
     QGraphicsTextItem(parent)
 {
-    health_ = 0;
+    health_ = 4;
+    setDefaultTextColor(Qt::red);
+    setFont(QFont("times", 16));
     print();
 }
 
-void Health::increment()
+void Health::decrement()
 {
-    health_++;
+    if (health_ > 0)
+    {
+        health_--;
+        print();
+    }
 }
 
 void Health::print()

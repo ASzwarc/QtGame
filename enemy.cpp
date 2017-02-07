@@ -4,7 +4,9 @@
 #include <QTimer>
 #include <QGraphicsScene>
 
-Enemy::Enemy(QObject *parent) : QObject(parent)
+Enemy::Enemy(QObject *parent, Health* health):
+    QObject(parent),
+    health_(health)
 {
     setPos(rand() % 750, 0);
     setRect(0, 0, 30, 20);
@@ -18,8 +20,10 @@ void Enemy::move()
     setPos(x(), y() + 5);
     if (pos().y() + rect().height() > 600)
     {
+        qDebug() << "Enemy deleted (out of screen)";
+        health_->decrement();
         scene()->removeItem(this);
         delete this;
-        qDebug() << "Enemy deleted (out of screen)";
+        return;
     }
 }

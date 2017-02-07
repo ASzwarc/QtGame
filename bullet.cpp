@@ -4,7 +4,8 @@
 #include <QGraphicsScene>
 #include <QDebug>
 
-Bullet::Bullet()
+Bullet::Bullet(Score* score):
+    score_(score)
 {
     setRect(0, 0, 10, 50);
 
@@ -19,9 +20,9 @@ void Bullet::move()
     if (pos().y() + rect().height() < 0)
     {
         scene()->removeItem(this);
-        delete this;
-
         qDebug() << "Bullet deleted (out of screen)";
+        delete this;
+        return;
     }
     QList<QGraphicsItem*> itemsThatCollide = collidingItems();
     for(auto& element: itemsThatCollide)
@@ -30,9 +31,11 @@ void Bullet::move()
         {
             scene()->removeItem(element);
             scene()->removeItem(this);
-            delete this;
             delete element;
             qDebug() << "Bullet and enemy delted (collision)";
+            score_->increment();
+            delete this;
+            return;
         }
     }
 }

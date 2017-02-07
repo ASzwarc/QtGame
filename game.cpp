@@ -8,14 +8,16 @@
 
 Game::Game()
 {
+    scene_ = new QGraphicsScene();
+    view_ = std::make_shared<QGraphicsView>(scene_);
+    score_ = new Score();
+    player_ = new MyReact(40, 50, score_);
+    health_ = new Health();
 
 }
 
 void Game::setupElements()
 {
-    scene_ = new QGraphicsScene();
-    view_ = std::make_shared<QGraphicsView>(scene_);
-
     view_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -23,10 +25,7 @@ void Game::setupElements()
     view_->setFixedSize(width_, height_);
     scene_->setSceneRect(0, 0, width_, height_);
 
-    player_ = new MyReact(40, 50);
-    scene_->addItem(player_);
-    player_->setPos(view_->width() / 2, view_->height() - player_->rect().height());
-
+    setupPlayer();
     setupStatusObjects();
     spawnEnemies();
 }
@@ -40,15 +39,19 @@ void Game::spawnEnemies()
 
 void Game::setupEnemies()
 {
-    Enemy* newEnemy = new Enemy();
+    Enemy* newEnemy = new Enemy(nullptr, health_);
     scene_->addItem(newEnemy);
+}
+
+void Game::setupPlayer()
+{
+    scene_->addItem(player_);
+    player_->setPos(view_->width() / 2, view_->height() - player_->rect().height());
 }
 
 void Game::setupStatusObjects()
 {
-    Health* health = new Health(player_);
-    //scene_->addItem(health);
-
-    Score* score = new Score(player_);
-    //scene_->addItem(score);
+    scene_->addItem(health_);
+    health_->setPos(health_->x(), health_->y() + 25);
+    scene_->addItem(score_);
 }
