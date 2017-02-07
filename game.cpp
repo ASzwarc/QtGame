@@ -1,6 +1,7 @@
 #include "game.h"
 #include "enemy.h"
-#include "myreact.h"
+#include "health.h"
+#include "score.h"
 
 #include <QGraphicsScene>
 #include <QTimer>
@@ -22,9 +23,11 @@ void Game::setupElements()
     view_->setFixedSize(width_, height_);
     scene_->setSceneRect(0, 0, width_, height_);
 
-    MyReact* rectItem = new MyReact(40, 50);
-    scene_->addItem(rectItem);
-    rectItem->setPos(view_->width() / 2, view_->height() - rectItem->rect().height());
+    player_ = new MyReact(40, 50);
+    scene_->addItem(player_);
+    player_->setPos(view_->width() / 2, view_->height() - player_->rect().height());
+
+    setupStatusObjects();
     spawnEnemies();
 }
 
@@ -39,4 +42,13 @@ void Game::setupEnemies()
 {
     Enemy* newEnemy = new Enemy();
     scene_->addItem(newEnemy);
+}
+
+void Game::setupStatusObjects()
+{
+    Health* health = new Health(player_);
+    //scene_->addItem(health);
+
+    Score* score = new Score(player_);
+    //scene_->addItem(score);
 }

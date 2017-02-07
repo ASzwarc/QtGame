@@ -16,12 +16,16 @@ SOURCES += main.cpp \
     myreact.cpp \
     bullet.cpp \
     enemy.cpp \
-    game.cpp
+    game.cpp \
+    score.cpp \
+    health.cpp
 
 HEADERS  += \
     myreact.h \
     bullet.h \
     enemy.h \
-    game.h
+    game.h \
+    score.h \
+    health.h
 
 FORMS    +=
