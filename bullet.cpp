@@ -1,4 +1,5 @@
 #include "bullet.h"
+#include "enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
@@ -20,6 +21,18 @@ void Bullet::move()
         scene()->removeItem(this);
         delete this;
 
-        qDebug() << "Bullet deleted";
+        qDebug() << "Bullet deleted (out of screen)";
+    }
+    QList<QGraphicsItem*> itemsThatCollide = collidingItems();
+    for(auto& element: itemsThatCollide)
+    {
+        if(dynamic_cast<Enemy*>(element))
+        {
+            scene()->removeItem(element);
+            scene()->removeItem(this);
+            delete this;
+            delete element;
+            qDebug() << "Bullet and enemy delted (collision)";
+        }
     }
 }
