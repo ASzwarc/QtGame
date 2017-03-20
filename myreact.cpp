@@ -23,7 +23,7 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Space)
     {
         Bullet* bullet = new Bullet(score_);
-        bullet->setPos(x(), y());
+        bullet->setPos(x() - 30, y() - 50);
         scene()->addItem(bullet);
     }
     else
