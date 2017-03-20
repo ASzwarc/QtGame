@@ -11,7 +11,7 @@ Game::Game()
     scene_ = new QGraphicsScene();
     view_ = std::make_shared<QGraphicsView>(scene_);
     score_ = new Score();
-    player_ = new MyReact(40, 50, score_);
+    player_ = new MyReact(score_);
     health_ = new Health();
 
 }
@@ -46,7 +46,7 @@ void Game::setupEnemies()
 void Game::setupPlayer()
 {
     scene_->addItem(player_);
-    player_->setPos(view_->width() / 2, view_->height() - player_->rect().height());
+    player_->setPos(view_->width() / 2, view_->height() - player_->getHeight());
 }
 
 void Game::setupStatusObjects()

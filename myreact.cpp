@@ -15,7 +15,7 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Right)
     {
-        if (pos().x() + 48 < 800)
+        if (pos().x() + getWidth() < 800)
         {
             setPos(x() + 10, y());
         }
@@ -23,7 +23,7 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Space)
     {
         Bullet* bullet = new Bullet(score_);
-        bullet->setPos(x() - 30, y() - 50);
+        bullet->setPos(x(), y());
         scene()->addItem(bullet);
     }
     else
@@ -32,17 +32,30 @@ void MyReact::keyPressEvent(QKeyEvent *event)
     }
 }
 
-MyReact::MyReact(int width, int height, Score *score):
-    score_(score)
+MyReact::MyReact():
+    score_(nullptr),
+    pixmap_(QPixmap(":/images/player.png"))
 {
-    setRect(0, 0, width, height);
+    setPixmap(pixmap_);
     setProperties();
 }
 
-MyReact::MyReact()
+MyReact::MyReact(Score *score):
+    score_(score),
+    pixmap_(QPixmap(":/images/player.png"))
 {
-    setRect(0, 0, 40, 50);
+    setPixmap(pixmap_);
     setProperties();
+}
+
+int MyReact::getHeight()
+{
+    return pixmap_.rect().height();
+}
+
+int MyReact::getWidth()
+{
+    return pixmap_.rect().width();
 }
 
 void MyReact::setProperties()
