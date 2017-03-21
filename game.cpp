@@ -5,7 +5,7 @@
 
 #include <QGraphicsScene>
 #include <QTimer>
-
+#include <QBrush>
 Game::Game()
 {
     scene_ = new QGraphicsScene();
@@ -24,6 +24,7 @@ void Game::setupElements()
     view_->show();
     view_->setFixedSize(width_, height_);
     scene_->setSceneRect(0, 0, width_, height_);
+    //setBackgroundBrush(QBrush(QImage("")));
 
     setupPlayer();
     setupStatusObjects();

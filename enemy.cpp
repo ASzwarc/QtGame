@@ -11,6 +11,9 @@ Enemy::Enemy(QObject *parent, Health* health):
 {
     setPos(rand() % 750, 0);
     setPixmap(pixmap_);
+    setTransformOriginPoint(50, 50);
+    setRotation(180);
+
     QTimer* timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(100);
